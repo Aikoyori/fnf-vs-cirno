@@ -2722,7 +2722,7 @@ class PlayState extends MusicBeatState
 	function finishSong():Void
 	{
 		var finishCallback:Void->Void = dialogueOnCertainSongs; //In case you want to change it in a specific song.
-		
+		endingSong = true;
 		updateTime = false;
 		FlxG.sound.music.volume = 0;
 		vocals.volume = 0;
