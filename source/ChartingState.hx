@@ -51,7 +51,8 @@ class ChartingState extends MusicBeatState
 		'',
 		'1 - Alt Animation',
 		'2 - Hey!',
-		'3 - Hurt Note'
+		'3 - Hurt Note',
+		'4 - Ice Note'
 	];
 
 	private static var eventStuff:Array<Dynamic> =
@@ -149,7 +150,7 @@ class ChartingState extends MusicBeatState
 
 		var eventIcon:FlxSprite = new FlxSprite(-GRID_SIZE - 5, -90).loadGraphic(Paths.image('eventArrow'));
 		leftIcon = new HealthIcon('bf');
-		rightIcon = new HealthIcon('dad');
+		rightIcon = new HealthIcon('gf');
 		eventIcon.scrollFactor.set(1, 1);
 		leftIcon.scrollFactor.set(1, 1);
 		rightIcon.scrollFactor.set(1, 1);
@@ -541,8 +542,9 @@ class ChartingState extends MusicBeatState
 			for (note in _song.notes[daSec - value].sectionNotes)
 			{
 				var strum = note[0] + Conductor.stepCrochet * (_song.notes[daSec].lengthInSteps * value);
-
-				var copiedNote:Array<Dynamic> = [strum, note[1], note[2]];
+				var daData = 0;
+				if( note[4] != null) daData =  note[3];
+				var copiedNote:Array<Dynamic> = [strum, note[1], note[2], note[3], daData];
 				_song.notes[daSec].sectionNotes.push(copiedNote);
 			}
 			updateGrid();
@@ -1182,6 +1184,7 @@ class ChartingState extends MusicBeatState
 						}
 						soundToPlay += Std.string(data + 1);
 						FlxG.sound.play(Paths.sound(soundToPlay));
+
 						playedSound[data] = true;
 					}
 				}

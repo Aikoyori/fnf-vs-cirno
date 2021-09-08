@@ -47,6 +47,12 @@ class Note extends FlxSprite
 					colorSwap.saturation = 0;
 					colorSwap.brightness = 0;
 
+				case 4: //9 note
+					reloadNote('ICE');
+					colorSwap.hue = 0;
+					colorSwap.saturation = 0;
+					colorSwap.brightness = 0;
+
 				default:
 					colorSwap.hue = ClientPrefs.arrowHSV[noteData % 4][0] / 360;
 					colorSwap.saturation = ClientPrefs.arrowHSV[noteData % 4][1] / 100;

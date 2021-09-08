@@ -24,6 +24,10 @@ class CreditsState extends MusicBeatState
 	private var iconArray:Array<AttachedSprite> = [];
 
 	private static var creditsStuff:Array<Dynamic> = [ //Name - Icon name - Description - Link - BG Color
+		['vs Cirno'],
+		['detectiveprince',		'detectiveprince',		'Artist & Musician of the mod',					'https://gamebanana.com/members/1866642',	0xff59dbff],
+		['Aikoyori',		'aikoyori',		'Programmer of the mod',					'https://twitter.com/Aikoyori',	0xFFff78c7],
+		
 		['Psych Engine Team'],
 		['Shadow Mario',		'shadowmario',		'Main Programmer of Psych Engine',					'https://twitter.com/Shadow_Mario_',	0xFFFFDD33],
 		['RiverOaken',			'riveroaken',		'Main Artist/Animator of Psych Engine',				'https://twitter.com/river_oaken',		0xFFC30085],

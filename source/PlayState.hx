@@ -198,6 +198,8 @@ class PlayState extends MusicBeatState
 
 	public var defaultCamZoom:Float = 1.05;
 
+	private var isFrozen:Bool = false;
+
 	// how big to stretch the pixel art assets
 	public static var daPixelZoom:Float = 6;
 
@@ -2200,6 +2202,8 @@ class PlayState extends MusicBeatState
 								switch(daNote.noteType) {
 									case 3:
 										//Hurt note, does nothing.
+									case 4:
+										//Hurt note, does nothing.
 
 									default:
 										health -= 0.0475; //For testing purposes
@@ -2258,7 +2262,17 @@ class PlayState extends MusicBeatState
 
 		if (!inCutscene) {
 			if(!cpuControlled) {
-				keyShit();
+				if(!isFrozen) keyShit();
+				else
+					{
+						playerStrums.forEach(function(spr:StrumNote)
+							{
+								
+									spr.playAnim('static');
+									spr.resetAnim = 0;
+								
+							});	
+					}
 			} else if(boyfriend.holdTimer > Conductor.stepCrochet * 0.001 * boyfriend.singDuration && boyfriend.animation.curAnim.name.startsWith('sing') && !boyfriend.animation.curAnim.name.endsWith('miss')) {
 				boyfriend.dance();
 			}
@@ -3173,6 +3187,42 @@ class PlayState extends MusicBeatState
 							}
 							else health -= 0.06; //0.06 + 0.04 = -0.1 (-5%) of HP if you hit a hurt sustain note
 	
+							if(boyfriend.animation.getByName('hurt') != null) {
+								boyfriend.playAnim('hurt', true);
+								boyfriend.specialAnim = true;
+							}
+						}
+
+						note.wasGoodHit = true;
+						vocals.volume = 0;
+
+						if (!note.isSustainNote)
+						{
+							note.kill();
+							notes.remove(note, true);
+							note.destroy();
+						}
+					}
+					return;				
+				case 4: //ice fairy note
+					if(cpuControlled) return;
+
+					if(!boyfriend.stunned)
+					{
+						noteMiss(note.noteData);
+						if(!endingSong)
+						{
+							
+							if(!note.isSustainNote) {
+							 //0.26 + 0.04 = -0.3 (-15%) of HP if you hit a hurt note
+								spawnNoteSplashOnNote(note);
+							}
+							isFrozen = true;
+							new FlxTimer().start(0.8, function(tmr:FlxTimer)
+								{
+									isFrozen = false;
+
+								});
 							if(boyfriend.animation.getByName('hurt') != null) {
 								boyfriend.playAnim('hurt', true);
 								boyfriend.specialAnim = true;

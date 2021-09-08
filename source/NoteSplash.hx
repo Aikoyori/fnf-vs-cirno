@@ -36,6 +36,8 @@ class NoteSplash extends FlxSprite
 			switch(noteType) {
 				case 3: //Hurt note
 					loadAnims('HURT' + skin);
+				case 4: //Hurt note
+					loadAnims('ICE' + skin);
 
 				default:
 					loadAnims(skin);
@@ -48,6 +50,10 @@ class NoteSplash extends FlxSprite
 				colorSwap.hue = 0;
 				colorSwap.saturation = 0;
 				colorSwap.brightness = 0;
+			case 4:
+				colorSwap.hue = 0;
+				colorSwap.saturation = 0;
+				colorSwap.brightness = 0;
 			
 			default:
 				colorSwap.hue = ClientPrefs.arrowHSV[note % 4][0] / 360;
@@ -55,6 +61,11 @@ class NoteSplash extends FlxSprite
 				colorSwap.brightness = ClientPrefs.arrowHSV[note % 4][2] / 100;
 		}
 		offset.set(10, 10);
+		if(noteType == 4)
+			{
+				
+				offset.set(150, 120);
+			}
 
 		var animNum:Int = FlxG.random.int(1, 2);
 		animation.play('note' + note + '-' + animNum, true);
