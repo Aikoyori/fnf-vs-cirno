@@ -5,9 +5,9 @@ cirno:left bf:right
 :1:talk:0.1:normal:jesus
 :1:talk:0.1:normal:fucking
 :1:talk:0.1:normal:christ
-:1:talk:0.1:normal:what the fuck why are there so many\nmods of you on 9/9
+:1:talk:0.05:normal:what the fuck why are there so many\nmods of you on sepmterber 9
 :0:talk:0.05:normal:are you fucking serious
-:1:talk:0.05:normal:yea apparently people decided to\nrelease cirno mod on 9/9
+:1:talk:0.05:normal:yea apparently people decided to\nrelease cirno mod on september 9
 :0:talk:0.05:normal:gee i wonder why
 :0:talk:0.05:normal:i guess i will look better than this\non one of them
 :1:talk:0.05:normal:dumbass you never looked smart in the\nfirst place tf u mean 1+2=9

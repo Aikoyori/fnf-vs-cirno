@@ -1,5 +1,7 @@
 cirno:left bf:right
-:0:talk:0.05:normal:ayo what da updog doin
+:0:talk:0.05:normal:ayo what da dog doin
+:1:talk:0.05:normal:i dunno what dog
+:0:talk:0.05:normal:updog
 :1:talk:0.05:normal:what is updog
 :0:talk:0.05:normal:not much hbu
 :1:talk:0.05:normal:idk mate

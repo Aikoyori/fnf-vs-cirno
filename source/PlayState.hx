@@ -76,7 +76,7 @@ class PlayState extends MusicBeatState
 	public var dadMap:Map<String, Character> = new Map<String, Character>();
 	public var gfMap:Map<String, Character> = new Map<String, Character>();
 	#end
-
+	private var songEndedMate:Bool=false;
 	public var BF_X:Float = 770;
 	public var BF_Y:Float = 100;
 	public var DAD_X:Float = 100;
@@ -972,7 +972,7 @@ class PlayState extends MusicBeatState
 		add(iceOverlay);
 		if(daSong == "perfect-math")
 			{
-				health = 1;
+				health = 1.2;
 			}
 		#if desktop
 		// Updating Discord Rich Presence.
@@ -1046,8 +1046,7 @@ class PlayState extends MusicBeatState
 	{
 		// TO DO: Make this more flexible, maybe?
 		inCutscene = true;
-		CoolUtil.precacheSound('dialogue');
-		CoolUtil.precacheSound('dialogueClose');
+		FlxG.log.add("LMAO THE FUNCTION RUNS LOL");
 		var doof:DialogueBoxPsych = new DialogueBoxPsych(dialogue, song);
 		doof.scrollFactor.set();
 		doof.finishThing = endSong;
@@ -1946,7 +1945,7 @@ class PlayState extends MusicBeatState
 			{	
 				if(curStep>=0)
 					{
-						if(health>=0.02) health-=health*0.999*elapsed/50;
+						if(health>=0.02 && !songEndedMate) health-=health*0.999*elapsed/50;
 					}
 			}
 		iconP1.updateHitbox();
@@ -2337,6 +2336,7 @@ class PlayState extends MusicBeatState
 		if(!endingSong && !startingSong) {
 			if (FlxG.keys.justPressed.ONE)
 				FlxG.sound.music.onComplete();
+				KillNotes();
 			if(FlxG.keys.justPressed.TWO) { //Go 10 seconds into the future :O
 				FlxG.sound.music.pause();
 				vocals.pause();
@@ -2703,31 +2703,35 @@ class PlayState extends MusicBeatState
 		camFollow.set(x, y);
 		camFollowPos.setPosition(x, y);
 	}
+	function dialogueOnCertainSongs():Void
+		{
+			songEndedMate = true;
+			if(isStoryMode)
+				{
 
+					switch(curSong.toLowerCase()){
+						case "perfect-math":
+							dialogueOutro(dialogue2);
+						default:
+							endSong();
+					}
+				}
+		}
 	function finishSong():Void
 	{
-		var finishCallback:Void->Void = endSong; //In case you want to change it in a specific song.
-
+		var finishCallback:Void->Void = dialogueOnCertainSongs; //In case you want to change it in a specific song.
+		
 		updateTime = false;
 		FlxG.sound.music.volume = 0;
 		vocals.volume = 0;
 		vocals.pause();
 		if(ClientPrefs.noteOffset <= 0) {
+			finishCallback();
 			
-			switch(curSong){
-				case "perfect-math":
-				dialogueOutro(dialogue2);
-				default:
-					finishCallback();
-			}
 		} else {
 			finishTimer = new FlxTimer().start(ClientPrefs.noteOffset / 1000, function(tmr:FlxTimer) {
-				switch(curSong){
-					case "perfect-math":
-					dialogueOutro(dialogue2);
-					default:
-						finishCallback();
-				}
+				finishCallback();
+				
 			});
 		}
 	}
@@ -3629,7 +3633,7 @@ class PlayState extends MusicBeatState
 
 		if(dad.curCharacter == "cirno")
 			{
-				if(health>=0.02) health*=0.99;
+				if(health>=0.02 && !songEndedMate) health*=0.99;
 			}
 
 		if(curBeat % 2 == 0) {
