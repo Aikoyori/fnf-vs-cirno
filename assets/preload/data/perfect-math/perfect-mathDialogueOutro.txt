@@ -1,0 +1,18 @@
+cirno:left bf:right
+:0:talk:0.05:normal:bro that was unfair how tf did u win
+:1:talk:0.05:normal:tf do you mean unfair you tried to\nget me to die faster from the health drain
+:0:talk:0.05:normal:anyway ill beat you quicker than\nyou can sing just you wait moron
+:1:talk:0.1:normal:jesus
+:1:talk:0.1:normal:fucking
+:1:talk:0.1:normal:christ
+:1:talk:0.1:normal:what the fuck why are there so many\nmods of you on 9/9
+:0:talk:0.05:normal:are you fucking serious
+:1:talk:0.05:normal:yea apparently people decided to\nrelease cirno mod on 9/9
+:0:talk:0.05:normal:gee i wonder why
+:0:talk:0.05:normal:i guess i will look better than this\non one of them
+:1:talk:0.05:normal:dumbass you never looked smart in the\nfirst place tf u mean 1+2=9
+:0:talk:0.05:normal:im the strongest and smartest fairy\nin Gensokyo i can at least count to 3
+:1:talk:0.05:normal:so when gun make holes 3
+:0:talk:0.05:normal:dunno but at least i can count
+:1:talk:0.05:normal:ok then ig ill see u in another mod
+:0:talk:0.05:normal:ok cya

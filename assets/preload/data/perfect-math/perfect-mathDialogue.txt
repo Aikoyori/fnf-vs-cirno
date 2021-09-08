@@ -10,8 +10,12 @@ cirno:left bf:right
 :0:talk:0.05:angry:wtf
 :0:talk:0.05:angry:why are you doing this to me
 :1:talk:0.05:normal:doin yo ma
+:0:talk:0.05:normal:fine whatever
+:1:talk:0.05:normal:what is 1+2
+:0:talk:0.05:normal:it's 9!!!
+:1:talk:0.05:normal:dumass can't even fucking count lol
 :0:talk:0.05:angry:ok that's it im fucking fed up with this shit
-:0:talk:0.05:angry:ill have u know that i am president\n in 23 legal states of Gensokyo
+:0:talk:0.05:angry:ill have u know that i am president\nin 23 legal states of Gensokyo
 :1:talk:0.05:normal:ok and?
 :0:talk:0.05:angry:you'll die here today
 :1:talk:0.05:normal:ok and?

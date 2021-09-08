@@ -155,6 +155,7 @@ class PlayState extends MusicBeatState
 	public var camOther:FlxCamera;
 
 	var dialogue:Array<String> = ['blah blah blah', 'coolswag'];
+	var dialogue2:Array<String> = ['blah blah blah', 'coolswag'];
 
 	var halloweenBG:BGSprite;
 	var halloweenWhite:BGSprite;
@@ -717,8 +718,12 @@ class PlayState extends MusicBeatState
 
 		var lowercaseSong:String = SONG.song.toLowerCase();
 		var file:String = Paths.txt(lowercaseSong + '/' + lowercaseSong + 'Dialogue');
+		var file2:String = Paths.txt(lowercaseSong + '/' + lowercaseSong + 'DialogueOutro');
 		if (OpenFlAssets.exists(file)) {
 			dialogue = CoolUtil.coolTextFile(file);
+		}
+		if (OpenFlAssets.exists(file2)) {
+			dialogue2 = CoolUtil.coolTextFile(file2);
 		}
 		var doof:DialogueBox = new DialogueBox(false, dialogue);
 		// doof.x += 70;
@@ -967,7 +972,7 @@ class PlayState extends MusicBeatState
 		add(iceOverlay);
 		if(daSong == "perfect-math")
 			{
-				health = 2;
+				health = 1;
 			}
 		#if desktop
 		// Updating Discord Rich Presence.
@@ -1033,6 +1038,19 @@ class PlayState extends MusicBeatState
 		var doof:DialogueBoxPsych = new DialogueBoxPsych(dialogue, song);
 		doof.scrollFactor.set();
 		doof.finishThing = startCountdown;
+		doof.nextDialogueThing = startNextDialogue;
+		doof.cameras = [camHUD];
+		add(doof);
+	}	
+	public function dialogueOutro(dialogue:Array<String>, ?song:String = null):Void
+	{
+		// TO DO: Make this more flexible, maybe?
+		inCutscene = true;
+		CoolUtil.precacheSound('dialogue');
+		CoolUtil.precacheSound('dialogueClose');
+		var doof:DialogueBoxPsych = new DialogueBoxPsych(dialogue, song);
+		doof.scrollFactor.set();
+		doof.finishThing = endSong;
 		doof.nextDialogueThing = startNextDialogue;
 		doof.cameras = [camHUD];
 		add(doof);
@@ -1733,6 +1751,7 @@ class PlayState extends MusicBeatState
 		perfectMode = false;
 		#end
 
+
 		/*if (FlxG.keys.justPressed.NINE)
 		{
 			iconP1.swapOldIcon();
@@ -1923,7 +1942,13 @@ class PlayState extends MusicBeatState
 
 		iconP1.setGraphicSize(Std.int(FlxMath.lerp(150, iconP1.width, CoolUtil.boundTo(1 - (elapsed * 30), 0, 1))));
 		iconP2.setGraphicSize(Std.int(FlxMath.lerp(150, iconP2.width, CoolUtil.boundTo(1 - (elapsed * 30), 0, 1))));
-
+		if(dad.curCharacter == "cirno")
+			{	
+				if(curStep>=0)
+					{
+						if(health>=0.02) health-=health*0.999*elapsed/50;
+					}
+			}
 		iconP1.updateHitbox();
 		iconP2.updateHitbox();
 
@@ -2175,10 +2200,6 @@ class PlayState extends MusicBeatState
 						}
 						dad.playAnim(animToPlay + altAnim, true);
 					}
-					if(dad.curCharacter == "cirno")
-						{
-							health-=0.014;
-						}
 					dad.holdTimer = 0;
 
 					if (SONG.needsVoices)
@@ -2692,10 +2713,21 @@ class PlayState extends MusicBeatState
 		vocals.volume = 0;
 		vocals.pause();
 		if(ClientPrefs.noteOffset <= 0) {
-			finishCallback();
+			
+			switch(curSong){
+				case "perfect-math":
+				dialogueOutro(dialogue2);
+				default:
+					finishCallback();
+			}
 		} else {
 			finishTimer = new FlxTimer().start(ClientPrefs.noteOffset / 1000, function(tmr:FlxTimer) {
-				finishCallback();
+				switch(curSong){
+					case "perfect-math":
+					dialogueOutro(dialogue2);
+					default:
+						finishCallback();
+				}
 			});
 		}
 	}
@@ -2745,7 +2777,6 @@ class PlayState extends MusicBeatState
 			campaignMisses += songMisses;
 
 			storyPlaylist.remove(storyPlaylist[0]);
-
 			if (storyPlaylist.length <= 0)
 			{
 				FlxG.sound.playMusic(Paths.music('freakyMenu'));
@@ -2772,7 +2803,6 @@ class PlayState extends MusicBeatState
 			else
 			{
 				var difficulty:String = '' + CoolUtil.difficultyStuff[storyDifficulty][1];
-
 				trace('LOADING NEXT SONG');
 				trace(PlayState.storyPlaylist[0].toLowerCase() + difficulty);
 
@@ -3596,6 +3626,11 @@ class PlayState extends MusicBeatState
 		{
 			gf.dance();
 		}
+
+		if(dad.curCharacter == "cirno")
+			{
+				if(health>=0.02) health*=0.99;
+			}
 
 		if(curBeat % 2 == 0) {
 			if (!boyfriend.animation.curAnim.name.startsWith("sing") && !boyfriend.specialAnim)
