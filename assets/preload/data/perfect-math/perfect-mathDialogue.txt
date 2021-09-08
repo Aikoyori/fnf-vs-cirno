@@ -1,0 +1,19 @@
+cirno:left bf:right
+:0:talk:0.05:normal:ayo what da updog doin
+:1:talk:0.05:normal:what is updog
+:0:talk:0.05:normal:not much hbu
+:1:talk:0.05:normal:idk mate
+:0:talk:0.05:normal:why am i even here
+:1:talk:0.05:normal:joe mod you in
+:0:talk:0.05:normal:who is joe
+:1:talk:0.05:normal:joe mama
+:0:talk:0.05:angry:wtf
+:0:talk:0.05:angry:why are you doing this to me
+:1:talk:0.05:normal:doin yo ma
+:0:talk:0.05:angry:ok that's it im fucking fed up with this shit
+:0:talk:0.05:angry:ill have u know that i am president\n in 23 legal states of Gensokyo
+:1:talk:0.05:normal:ok and?
+:0:talk:0.05:angry:you'll die here today
+:1:talk:0.05:normal:ok and?
+:0:talk:0.05:normal:ok whatever this engine is good\n enough let's sing i guess
+:1:talk:0.05:normal:sure y not lol

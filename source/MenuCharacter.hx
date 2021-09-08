@@ -30,6 +30,10 @@ class MenuCharacter extends FlxSprite
 				frames = Paths.getSparrowAtlas('menucharacters/Menu_GF');
 				animation.addByPrefix('idle', "M GF Idle", 24);
 
+			case 'cirno':
+				frames = Paths.getSparrowAtlas('menucharacters/Menu_Cirno');
+				animation.addByPrefix('idle', "cirno-idle", 24);
+
 			case 'dad':
 				frames = Paths.getSparrowAtlas('menucharacters/Menu_Dad');
 				animation.addByPrefix('idle', "M Dad Idle", 24);
@@ -63,6 +67,10 @@ class MenuCharacter extends FlxSprite
 
 			case 'gf':
 				offset.set(0, -25);
+
+			case 'cirno':
+				offset.set(80, 150 );
+				scale.set(0.5,0.5);
 
 			case 'spooky':
 				offset.set(0, -80);

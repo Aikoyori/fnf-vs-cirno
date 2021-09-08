@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="Menu_Cirno.png">
+	<!-- Created with Adobe Animate version 21.0.7.42652 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="cirno-idle0000" x="1" y="1" width="391" height="668"/>
+	<SubTexture name="cirno-idle0001" x="395" y="1" width="391" height="668"/>
+	<SubTexture name="cirno-idle0002" x="395" y="1" width="391" height="668"/>
+	<SubTexture name="cirno-idle0003" x="789" y="1" width="391" height="668"/>
+	<SubTexture name="cirno-idle0004" x="1183" y="1" width="391" height="668"/>
+	<SubTexture name="cirno-idle0005" x="1577" y="1" width="391" height="668"/>
+	<SubTexture name="cirno-idle0006" x="1577" y="1" width="391" height="668"/>
+	<SubTexture name="cirno-idle0007" x="1" y="672" width="391" height="668"/>
+	<SubTexture name="cirno-idle0008" x="395" y="672" width="391" height="668"/>
+	<SubTexture name="cirno-idle0009" x="789" y="672" width="391" height="668"/>
+	<SubTexture name="cirno-idle0010" x="789" y="672" width="391" height="668"/>
+	<SubTexture name="cirno-idle0011" x="789" y="672" width="391" height="668"/>
+	<SubTexture name="cirno-idle0012" x="789" y="672" width="391" height="668"/>
+	<SubTexture name="cirno-idle0013" x="789" y="672" width="391" height="668"/>
+	<SubTexture name="cirno-idle0014" x="789" y="672" width="391" height="668"/>
+	<SubTexture name="cirno-idle0015" x="789" y="672" width="391" height="668"/>
+	<SubTexture name="cirno-idle0016" x="789" y="672" width="391" height="668"/>
+	<SubTexture name="cirno-idle0017" x="789" y="672" width="391" height="668"/>
+	<SubTexture name="cirno-idle0018" x="789" y="672" width="391" height="668"/>
+	<SubTexture name="cirno-idle0019" x="789" y="672" width="391" height="668"/>
+	<SubTexture name="cirno-idle0020" x="789" y="672" width="391" height="668"/>
+	<SubTexture name="cirno-idle0021" x="789" y="672" width="391" height="668"/>
+	<SubTexture name="cirno-idle0022" x="789" y="672" width="391" height="668"/>
+</TextureAtlas>

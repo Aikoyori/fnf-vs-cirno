@@ -84,6 +84,9 @@ class PlayState extends MusicBeatState
 	public var GF_X:Float = 400;
 	public var GF_Y:Float = 130;
 
+	private var iceOverlay:FlxSprite;
+	private var hasNeverBeenFrozen:Bool = true;
+
 	public var boyfriendGroup:FlxTypedGroup<Boyfriend>;
 	public var dadGroup:FlxTypedGroup<Character>;
 	public var gfGroup:FlxTypedGroup<Character>;
@@ -258,9 +261,16 @@ class PlayState extends MusicBeatState
 		var songName:String = SONG.song;
 		displaySongName = StringTools.replace(songName, '-', ' ');
 
+		iceOverlay = new FlxSprite(702,33).loadGraphic(Paths.image("iceoverlay"));
+		iceOverlay.visible = false;
+		iceOverlay.updateHitbox();
+		FlxG.watch.add(iceOverlay,"getPosition()");
+		
+		iceOverlay.scrollFactor.set();
+		
 		#if desktop
 		storyDifficultyText = '' + CoolUtil.difficultyStuff[storyDifficulty][0];
-
+		
 		// String that contains the mode defined here so it isn't necessary to call changePresence for each mode
 		if (isStoryMode)
 		{
@@ -555,6 +565,13 @@ class PlayState extends MusicBeatState
 					bg.antialiasing = false;
 					add(bg);
 				}
+		
+			case "perfect-math":
+				defaultCamZoom = 0.7;
+				curStage = 'hotspring';
+				var bg:BGSprite = new BGSprite('hotspring', -600, -400, 0.9, 0.9);
+				bg.setGraphicSize(Std.int(bg.width * 1.5));
+				add(bg);
 
 			default:
 				defaultCamZoom = 0.9;
@@ -582,7 +599,7 @@ class PlayState extends MusicBeatState
 					stageCurtains.setGraphicSize(Std.int(stageCurtains.width * 0.9));
 					stageCurtains.updateHitbox();
 					add(stageCurtains);
-				}
+				}	
 		}
 
 		backgroundGroup = new FlxTypedGroup<FlxSprite>();
@@ -631,6 +648,13 @@ class PlayState extends MusicBeatState
 				BF_Y += 220;
 				GF_X += 180;
 				GF_Y += 300;
+			case 'hotspring':
+				BF_X -= 200;
+				BF_Y -= 300;
+				GF_X -= 500;
+				GF_Y -= 500;
+				DAD_X -= 500;
+				DAD_Y -= 200;
 		}
 
 		gf = new Character(GF_X, GF_Y, gfVersion);
@@ -836,7 +860,7 @@ class PlayState extends MusicBeatState
 		timeBarBG.cameras = [camHUD];
 		timeTxt.cameras = [camHUD];
 		doof.cameras = [camHUD];
-
+		iceOverlay.cameras = [camHUD];
 		// if (SONG.song == 'South')
 		// FlxG.camera.alpha = 0.7;
 		// UI_camera.zoom = 1;
@@ -925,7 +949,8 @@ class PlayState extends MusicBeatState
 				case 'senpai' | 'roses' | 'thorns':
 					if(daSong == 'roses') FlxG.sound.play(Paths.sound('ANGRY'));
 					schoolIntro(doof);
-
+				case 'perfect-math':
+					dialogueIntro(dialogue);
 				default:
 					startCountdown();
 			}
@@ -939,7 +964,11 @@ class PlayState extends MusicBeatState
 		CoolUtil.precacheSound('missnote1');
 		CoolUtil.precacheSound('missnote2');
 		CoolUtil.precacheSound('missnote3');
-		
+		add(iceOverlay);
+		if(daSong == "perfect-math")
+			{
+				health = 2;
+			}
 		#if desktop
 		// Updating Discord Rich Presence.
 		DiscordClient.changePresence(detailsText, displaySongName + " (" + storyDifficultyText + ")", iconP2.getCharacter());
@@ -2146,7 +2175,10 @@ class PlayState extends MusicBeatState
 						}
 						dad.playAnim(animToPlay + altAnim, true);
 					}
-
+					if(dad.curCharacter == "cirno")
+						{
+							health-=0.014;
+						}
 					dad.holdTimer = 0;
 
 					if (SONG.needsVoices)
@@ -2267,7 +2299,7 @@ class PlayState extends MusicBeatState
 					{
 						playerStrums.forEach(function(spr:StrumNote)
 							{
-								
+
 									spr.playAnim('static');
 									spr.resetAnim = 0;
 								
@@ -3218,9 +3250,11 @@ class PlayState extends MusicBeatState
 								spawnNoteSplashOnNote(note);
 							}
 							isFrozen = true;
+							iceOverlay.visible = true;
 							new FlxTimer().start(0.8, function(tmr:FlxTimer)
 								{
 									isFrozen = false;
+									iceOverlay.visible = false;
 
 								});
 							if(boyfriend.animation.getByName('hurt') != null) {

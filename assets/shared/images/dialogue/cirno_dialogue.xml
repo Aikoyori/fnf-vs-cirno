@@ -1,0 +1,12 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<TextureAtlas imagePath="cirno_dialogue.png">
+	<!-- Created with Adobe Animate version 21.0.7.42652 -->
+	<!-- http://www.adobe.com/products/animate.html -->
+	<SubTexture name="cirnodialogue0000" x="1" y="1" width="372" height="549"/>
+	<SubTexture name="cirnodialogue0001" x="1" y="1" width="372" height="549"/>
+	<SubTexture name="cirnodialogue0002" x="376" y="1" width="372" height="549"/>
+	<SubTexture name="cirnodialogue0003" x="376" y="1" width="372" height="549"/>
+	<SubTexture name="cirnodialogue0004" x="751" y="1" width="372" height="549"/>
+	<SubTexture name="cirnodialogue0005" x="751" y="1" width="372" height="549"/>
+	<SubTexture name="cirnodialogueidle0001" x="1126" y="1" width="372" height="549"/>
+</TextureAtlas>
