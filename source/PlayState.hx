@@ -2718,6 +2718,10 @@ class PlayState extends MusicBeatState
 							endSong();
 					}
 				}
+			else
+				{
+					endSong();
+				}
 		}
 	function finishSong():Void
 	{
