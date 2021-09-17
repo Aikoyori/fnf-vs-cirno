@@ -269,6 +269,10 @@ class PlayState extends MusicBeatState
 		
 		iceOverlay.scrollFactor.set();
 		
+		if(ClientPrefs.downScroll)
+			{
+				iceOverlay.y = FlxG.height - 27 - iceOverlay.height;
+			}
 		#if desktop
 		storyDifficultyText = '' + CoolUtil.difficultyStuff[storyDifficulty][0];
 		
